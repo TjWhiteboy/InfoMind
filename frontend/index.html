@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- Theme initialization: run before paint to prevent FOUC -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('darkMode');
+          var isDark;
+          if (saved !== null && saved !== 'undefined') {
+            isDark = JSON.parse(saved);
+          } else {
+            isDark = !window.matchMedia('(prefers-color-scheme: light)').matches;
+          }
+          var root = document.documentElement;
+          if (isDark) {
+            root.classList.add('dark');
+            root.classList.remove('light');
+          } else {
+            root.classList.add('light');
+            root.classList.remove('dark');
+          }
+        } catch(e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        background-color: #131313;
+      }
+      html.light {
+        background-color: #F5F5F0;
+      }
+      body {
+        margin: 0;
+        background-color: inherit;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      /* Blinking block cursor */
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor-blink {
+        animation: blink 1s step-end infinite;
+      }
+      /* AI typing dots */
+      @keyframes ai-pulse {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+      }
+      /* Custom scrollbar */
+      .chat-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      .chat-scroll::-webkit-scrollbar-track {
+        background: #1C1B1B;
+      }
+      .chat-scroll::-webkit-scrollbar-thumb {
+        background: #FF4D00;
+      }
+      /* Blinking dot for LIVE indicator */
+      @keyframes blink-dot {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      .animate-blink-dot {
+        animation: blink-dot 1s infinite;
+      }
+    </style>
+    <title>InfoMind — AI News Platform</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

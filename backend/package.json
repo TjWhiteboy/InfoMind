@@ -1,0 +1,24 @@
+{
+  "name": "ai-news-brain-backend",
+  "version": "1.0.0",
+  "description": "InfoMind backend server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "latest",
+    "bcryptjs": "^3.0.3",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.2",
+    "multer": "^2.1.1",
+    "openai": "^4.85.4"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
