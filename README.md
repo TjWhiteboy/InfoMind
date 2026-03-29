@@ -6,8 +6,17 @@ An AI-native news experience built for the **Economic Times Gen AI Hackathon 202
 
 ---
 
+## 🌐 Live Demo
+
+> 🚀 **[https://infomind-eight.vercel.app/](https://infomind-eight.vercel.app/)**
+
+Click the link above to access the live deployed version of Infomind. No installation needed — open it in any browser.
+
+---
+
 ## 📌 Table of Contents
 
+- [Live Demo](#live-demo)
 - [About the Project](#about-the-project)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -238,8 +247,8 @@ PORT=5000
 
 | Member | Role | Responsibilities |
 |---|---|---|
-| Member 1,3 | Frontend + UX | React UI, Pages, Components, Styling, Interactions |
-| Member 2,4 | Backend + AI | Node.js, Express, NewsAPI, OpenAI, All AI Endpoints |
+| Member 1 | Frontend + UX | React UI, Pages, Components, Styling, Interactions |
+| Member 2 | Backend + AI | Node.js, Express, NewsAPI, OpenAI, All AI Endpoints |
 
 ---
 
