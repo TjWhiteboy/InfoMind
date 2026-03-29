@@ -59,15 +59,11 @@ exports.getNews = async (req, res) => {
 
     // Helper: Modular Fetch to avoid repetition
     const fetchNewsFromAPI = async (queryTerm) => {
-      const url = "https://newsapi.org/v2/everything";
+      const url = "https://newsdata.io/api/1/news";
       const queryParams = { 
         q: queryTerm || "news",
         language: "en",
-        apiKey: process.env.NEWS_API_KEY,
-        pageSize: 40,
-        page: page,
-        sortBy: 'publishedAt',
-        cb: Date.now()
+        apikey: process.env.NEWS_API_KEY
       };
       
       console.log("API URL:", url);
@@ -76,9 +72,9 @@ exports.getNews = async (req, res) => {
       try {
         const response = await axios.get(url, {
           params: queryParams,
-          timeout: 5000
+          timeout: 10000
         });
-        return response?.data?.articles || [];
+        return response?.data?.results || [];
       } catch (error) {
         console.error("NEWS ERROR:", error.message);
         console.log("Retrying...");
@@ -111,16 +107,16 @@ exports.getNews = async (req, res) => {
     const mapped = (Array.isArray(rawArticles) ? rawArticles : [])
       .filter(a => a?.title && a.title !== "[Removed]") // remove junk
       .map((a, i) => ({
-        id: a?.url || `id-${i}-${Date.now()}`,
+        id: a?.link || a?.url || `id-${i}-${Date.now()}`,
         title: a?.title || "Untitled Intelligence Briefing",
         description: a?.description || "",
         content: (a?.content || a?.description || "Content unavailable.").slice(0, 800),
-        imageUrl: a?.urlToImage || PLACEHOLDER_IMG,
-        url: a?.url || "",
+        imageUrl: a?.image_url || a?.urlToImage || PLACEHOLDER_IMG,
+        url: a?.link || a?.url || "",
         category: category || "General",
-        source: a?.source?.name || "Unknown",
-        publishedAt: a?.publishedAt
-          ? new Date(a.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        source: a?.source_id || a?.source?.name || "Unknown",
+        publishedAt: (a?.pubDate || a?.publishedAt)
+          ? new Date(a.pubDate || a.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
           : today(),
         sentiment: "neutral",
         persona: ["investor", "founder", "student", "professional"]
