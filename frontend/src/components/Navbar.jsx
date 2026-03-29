@@ -108,7 +108,7 @@ export default function Navbar() {
                 <div className="w-8 h-8 rounded-full overflow-hidden bg-[#111111] border border-[#ff6a00]/20 group-hover:border-[#ff6a00]">
                   {user?.profilePic ? (
                     <img 
-                      src={user.profilePic.startsWith('http') ? user.profilePic : `http://localhost:5000${user.profilePic}`} 
+                      src={user.profilePic.startsWith('http') ? user.profilePic : `${import.meta.env.VITE_API_URL}${user.profilePic}`} 
                       alt="P" 
                       className="w-full h-full object-cover" 
                     />

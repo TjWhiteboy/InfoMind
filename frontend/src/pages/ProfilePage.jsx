@@ -100,7 +100,8 @@ export default function ProfilePage() {
       const res = await updatePhoto(file);
       if (res.success) {
         // Construct full URL (backend returns relative path /uploads/...)
-        const fullImageUrl = `http://localhost:5000${res.imageUrl}`;
+        const API_URL = import.meta.env.VITE_API_URL;
+        const fullImageUrl = `${API_URL}${res.imageUrl}`;
         
         setUser(res.user);
         const stored = JSON.parse(localStorage.getItem('user') || '{}');
@@ -258,7 +259,7 @@ export default function ProfilePage() {
                         )}
                         {user?.profilePic ? (
                           <img 
-                            src={user.profilePic.startsWith('http') ? user.profilePic : `http://localhost:5000${user.profilePic}`} 
+                            src={user.profilePic.startsWith('http') ? user.profilePic : `${import.meta.env.VITE_API_URL}${user.profilePic}`} 
                             alt="Avatar" 
                             className={`w-full h-full object-cover transition-opacity ${uploadingAvatar ? 'opacity-50' : ''}`} 
                           />
